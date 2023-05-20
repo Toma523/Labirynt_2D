@@ -1,4 +1,4 @@
-# Labirynt_2D
+Dark place - Labirynt_2D
 2D maze game. To win you must reach the finish line, but you may encounter some obstacles along the way...
 (game screenshots are in the files)
 
