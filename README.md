@@ -4,6 +4,7 @@
 
 When you touch the finish block, the game restarts
 
+----------------------------------------------------------
 
 Buttons:
 
