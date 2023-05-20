@@ -1,2 +1,2 @@
 # Labirynt_2D
- Gra labirynt 2D, w której musisz dotrzeć do mety
+2D maze game. To win you must reach the finish line, but you may encounter some obstacles along the way...
