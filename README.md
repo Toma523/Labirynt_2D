@@ -5,7 +5,11 @@
 When you touch the finish block, the game restarts
 
 Buttons:
+
 wsad - move
+
 space / left mb / shift - run
+
 right mb - flashlight
+
 esc - quit the game
