@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,9 +24,10 @@ public class PlayerMovement : MonoBehaviour
     SoundManager soundManager;
     bool isRunning;
     bool canRun = true;
-    float stPoints = 0.7f;
+    float stPoints = 0.8f;
     bool a = true;
     float saveWalkingSoundBrake;
+    bool isDead;
 
     void Start(){
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update(){
+        if(isDead){return;}
         LookAtMouse();
         if(myRigidbody2D.velocity != Vector2.zero && a){
             a = false;
@@ -61,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
+        if(isDead){return;}
         if(staminaSlider.value < stPoints * stDepleteMultiplier){
             canRun = false;
             walkingSoundBrake = saveWalkingSoundBrake;
@@ -88,9 +92,22 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         // Check if touching any end tile
         if(other.CompareTag("End tiles")){
-            Debug.Log("Quit!");
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.GetComponent<MonsterEnemy>()){
+            Debug.Log("Ouch!");
+            isDead = true;
+            soundManager.PlayDeath();
+            StartCoroutine(Death());
+        }
+    }
+
+    IEnumerator Death(){
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(0);
     }
 
     //********************** On input functions **********************//
@@ -117,5 +134,10 @@ public class PlayerMovement : MonoBehaviour
             flashlight.GetComponent<Light2D>().enabled = true;
         }
         soundManager.PlayFlashlight();
+    }
+
+    void OnEscape(InputValue value){
+        Debug.Log("Quit!");
+        Application.Quit();
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SPA_Rock_Grass_Water_14
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 72811865, guid: 2628029c31b20fd48b3fceb22b07f513, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.38039216, g: 0.38039216, b: 0.38039216, a: 1}
   m_Transform:
     e00: 1
     e01: 0
